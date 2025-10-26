@@ -1,6 +1,12 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
+import sunnyIcon from '/src/assets/images/sunny.png'
+import cloudyIcon from '/src/assets/images/cloudy.png'
+import rainyIcon from '/src/assets/images/rainy.png'
+import snowyIcon from '/src/assets/images/snowy.png'
+import stormyIcon from '/src/assets/images/stormy.png'
+
 export const useWeatherStore = defineStore('weather', () => {
   const currentWeather = ref(null)
   const lastWeatherData = ref(null)
@@ -9,30 +15,30 @@ export const useWeatherStore = defineStore('weather', () => {
   const error = ref(null)
 
   const weatherThemes = {
-    0: { theme: 'sunny', icon: '/src/assets/images/sunny.png' },
-    1: { theme: 'sunny', icon: '/src/assets/images/sunny.png' },
-    2: { theme: 'cloudy', icon: '/src/assets/images/cloudy.png' },
-    3: { theme: 'cloudy', icon: '/src/assets/images/cloudy.png' },
-    45: { theme: 'cloudy', icon: '/src/assets/images/cloudy.png' },
-    48: { theme: 'cloudy', icon: '/src/assets/images/cloudy.png' },
-    51: { theme: 'rainy', icon: '/src/assets/images/rainy.png' },
-    53: { theme: 'rainy', icon: '/src/assets/images/rainy.png' },
-    55: { theme: 'rainy', icon: '/src/assets/images/rainy.png' },
-    61: { theme: 'rainy', icon: '/src/assets/images/rainy.png' },
-    63: { theme: 'rainy', icon: '/src/assets/images/rainy.png' },
-    65: { theme: 'rainy', icon: '/src/assets/images/rainy.png' },
-    71: { theme: 'snowy', icon: '/src/assets/images/snowy.png' },
-    73: { theme: 'snowy', icon: '/src/assets/images/snowy.png' },
-    75: { theme: 'snowy', icon: '/src/assets/images/snowy.png' },
-    77: { theme: 'snowy', icon: '/src/assets/images/snowy.png' },
-    80: { theme: 'rainy', icon: '/src/assets/images/rainy.png' },
-    81: { theme: 'rainy', icon: '/src/assets/images/rainy.png' },
-    82: { theme: 'rainy', icon: '/src/assets/images/rainy.png' },
-    85: { theme: 'snowy', icon: '/src/assets/images/snowy.png' },
-    86: { theme: 'snowy', icon: '/src/assets/images/snowy.png' },
-    95: { theme: 'stormy', icon: '/src/assets/images/stormy.png' },
-    96: { theme: 'stormy', icon: '/src/assets/images/stormy.png' },
-    99: { theme: 'stormy', icon: '/src/assets/images/stormy.png' },
+    0: { theme: 'sunny', icon: sunnyIcon },
+    1: { theme: 'sunny', icon: sunnyIcon },
+    2: { theme: 'cloudy', icon: cloudyIcon },
+    3: { theme: 'cloudy', icon: cloudyIcon },
+    45: { theme: 'cloudy', icon: cloudyIcon },
+    48: { theme: 'cloudy', icon: cloudyIcon },
+    51: { theme: 'rainy', icon: rainyIcon },
+    53: { theme: 'rainy', icon: rainyIcon },
+    55: { theme: 'rainy', icon: rainyIcon },
+    61: { theme: 'rainy', icon: rainyIcon },
+    63: { theme: 'rainy', icon: rainyIcon },
+    65: { theme: 'rainy', icon: rainyIcon },
+    71: { theme: 'snowy', icon: snowyIcon },
+    73: { theme: 'snowy', icon: snowyIcon },
+    75: { theme: 'snowy', icon: snowyIcon },
+    77: { theme: 'snowy', icon: snowyIcon },
+    80: { theme: 'rainy', icon: rainyIcon },
+    81: { theme: 'rainy', icon: rainyIcon },
+    82: { theme: 'rainy', icon: rainyIcon },
+    85: { theme: 'snowy', icon: snowyIcon },
+    86: { theme: 'snowy', icon: snowyIcon },
+    95: { theme: 'stormy', icon: stormyIcon },
+    96: { theme: 'stormy', icon: stormyIcon },
+    99: { theme: 'stormy', icon: stormyIcon },
   }
 
   async function searchCity(cityName) {

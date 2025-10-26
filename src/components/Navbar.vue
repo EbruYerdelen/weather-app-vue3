@@ -2,7 +2,7 @@
   <v-navigation-drawer expand-on-hover permanent rail class="bg-pink-lighten-5 text-pink-darken-1">
     <v-list>
       <v-list-item
-        prepend-avatar="/src/assets/images/butterfly_6639361.png"
+        :prepend-avatar="butterfly"
         :subtitle="authStore.user?.email"
         :title="'Welcome ' + capitalize(authStore.user?.name || 'User')"
       ></v-list-item>
@@ -44,6 +44,7 @@
   import { ref, watch } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { capitalize } from '@/helpers/capitalize'
+  import butterfly from '/src/assets/images/butterfly_6639361.png'
 
   export default {
     setup() {
@@ -77,6 +78,7 @@
         selected,
         handleLogout,
         capitalize,
+        butterfly,
       }
     },
   }

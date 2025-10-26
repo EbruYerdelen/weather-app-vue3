@@ -5,11 +5,11 @@
         <v-card elevation="4" class="bg-pink-lighten-5">
           <v-card-title class="d-flex align-center justify-center pa-6">
             <v-avatar size="30">
-              <v-img src="/src/assets/images/butterfly_6639361.png" alt="weatherfly-logo" />
+              <v-img :src="butterfly" alt="weatherfly-logo" />
             </v-avatar>
             <h2 class="text-pink-darken-1 text-h5 text-md-h4">Welcome To WeatherFly!</h2>
             <v-avatar size="30">
-              <v-img src="/src/assets/images/butterfly_6639361.png" alt="weatherfly-logo" />
+              <v-img :src="butterfly" alt="weatherfly-logo" />
             </v-avatar>
           </v-card-title>
 
@@ -67,6 +67,7 @@
   import { useAuthStore } from '@/stores/auth'
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
+  import butterfly from '/src/assets/images/butterfly_6639361.png'
 
   export default {
     setup() {
@@ -136,6 +137,7 @@
         emailErrors,
         passwordErrors,
         handleLogin,
+        butterfly,
       }
     },
   }
