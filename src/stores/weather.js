@@ -103,6 +103,15 @@ export const useWeatherStore = defineStore('weather', () => {
     }
   }
 
+  function clearAllData() {
+    currentWeather.value = null
+    lastWeatherData.value = null
+    selectedCity.value = null
+    loading.value = false
+    error.value = null
+    localStorage.removeItem('lastWeatherData')
+  }
+
   return {
     currentWeather,
     lastWeatherData,
@@ -112,5 +121,6 @@ export const useWeatherStore = defineStore('weather', () => {
     searchCity,
     fetchWeather,
     loadLastWeatherData,
+    clearAllData,
   }
 })

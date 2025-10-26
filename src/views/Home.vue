@@ -2,13 +2,19 @@
   <div class="home-page d-flex justify-center align-center" :class="`theme-${currentTheme}`">
     <v-container class="py-8">
       <v-row justify="center">
-        <v-col cols="12" md="8" lg="6">
+        <v-col cols="12" md="7" lg="6">
           <v-card class="mb-6 glass-card" elevation="4">
-            <v-card-title class="text-pink-darken-1">Where Do You Want To Fly?</v-card-title>
+            <v-card-title class="text-pink-darken-1">
+              <span v-if="!$vuetify.display.xs">Where Do You Want To Fly?</span>
+              <span v-if="$vuetify.display.xs" class="d-flex align-center ga-1">
+                <span>Let's go</span>
+                <v-icon size="xsmall">mdi-butterfly</v-icon>
+              </span>
+            </v-card-title>
             <v-card-text>
               <v-form @submit.prevent="searchWeather">
                 <v-row>
-                  <v-col cols="8" sm="9">
+                  <v-col cols="12" sm="9">
                     <v-text-field
                       v-model="citySearch"
                       label="Enter city name"
@@ -17,12 +23,13 @@
                       :loading="weatherStore.loading"
                     />
                   </v-col>
-                  <v-col cols="4" sm="3">
+                  <v-col cols="5" sm="3">
                     <v-btn
                       type="submit"
                       variant="tonal"
                       color="pink-darken-1"
-                      prepend-icon="mdi-butterfly"
+                      :size="$vuetify.display.xs ? 'small' : 'default'"
+                      :prepend-icon="$vuetify.display.smAndUp ? 'mdi-butterfly' : ''"
                       :loading="weatherStore.loading"
                     >
                       Fly!
@@ -55,9 +62,22 @@
           >
             <v-card-text class="pa-4 text-pink-darken-1">
               <div class="text-center">
-                <h2 class="text-h3">{{ weatherStore.currentWeather.city }}</h2>
-                <div class="temperature">{{ weatherStore.currentWeather.temperature }}°C</div>
-                <h3 class="pt-2">Weather is {{ capitalizedCurrentTheme }}</h3>
+                <h2 :class="$vuetify.display.xs ? 'text-h5' : 'text-h4'">
+                  {{ weatherStore.currentWeather.city }}
+                </h2>
+                <div
+                  class="temperature"
+                  :class="{
+                    'text-h3': $vuetify.display.xs,
+                    'text-h2': $vuetify.display.sm,
+                    'text-h1': $vuetify.display.smAndUp,
+                  }"
+                >
+                  {{ weatherStore.currentWeather.temperature }}°C
+                </div>
+                <h3 :class="$vuetify.display.xs ? 'text-subtitle-1' : ''">
+                  Weather is {{ capitalize(currentTheme) }}
+                </h3>
                 <img
                   width="150"
                   :src="weatherStore.currentWeather.icon"
@@ -81,6 +101,7 @@
 <script>
   import { ref, computed } from 'vue'
   import { useWeatherStore } from '@/stores/weather'
+  import { capitalize } from '@/helpers/capitalize'
 
   export default {
     setup() {
@@ -89,10 +110,6 @@
 
       const currentTheme = computed(() => {
         return weatherStore.currentWeather?.theme || 'unknown'
-      })
-
-      const capitalizedCurrentTheme = computed(() => {
-        return currentTheme.value.charAt(0).toUpperCase() + currentTheme.value.slice(1)
       })
 
       const searchWeather = async () => {
@@ -110,7 +127,7 @@
         citySearch,
         currentTheme,
         searchWeather,
-        capitalizedCurrentTheme,
+        capitalize,
       }
     },
   }

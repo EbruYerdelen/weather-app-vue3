@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import { useWeatherStore } from './weather'
 
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(JSON.parse(localStorage.getItem('isAuthenticated') || 'false'))
@@ -24,12 +25,13 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   function logout() {
+    const weatherStore = useWeatherStore()
     isAuthenticated.value = false
     user.value = null
 
     localStorage.removeItem('isAuthenticated')
     localStorage.removeItem('user')
-    localStorage.removeItem('lastWeatherData')
+    weatherStore.clearAllData()
   }
 
   return {

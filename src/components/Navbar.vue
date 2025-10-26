@@ -4,7 +4,7 @@
       <v-list-item
         prepend-avatar="/src/assets/images/butterfly_6639361.png"
         :subtitle="authStore.user?.email"
-        :title="'Welcome ' + (authStore.user?.name || 'User')"
+        :title="'Welcome ' + capitalize(authStore.user?.name || 'User')"
       ></v-list-item>
     </v-list>
 
@@ -16,13 +16,13 @@
           prepend-icon="mdi-account"
           title="My Profile"
           value="myprofile"
-          @click="navigateTo('/profile')"
+          :to="{ path: '/profile' }"
         ></v-list-item>
         <v-list-item
           prepend-icon="mdi-home"
           title="Home Page"
           value="home"
-          @click="navigateTo('/home')"
+          :to="{ path: '/home' }"
         ></v-list-item>
       </v-list>
 
@@ -41,18 +41,27 @@
 
 <script>
   import { useAuthStore } from '@/stores/auth'
-  import { ref } from 'vue'
-  import { useRouter } from 'vue-router'
+  import { ref, watch } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
+  import { capitalize } from '@/helpers/capitalize'
 
   export default {
     setup() {
       const authStore = useAuthStore()
       const router = useRouter()
+      const route = useRoute()
       const selected = ref(null)
 
-      const navigateTo = (path) => {
-        router.push(path)
+      const routeToNavMap = {
+        '/profile': 'myprofile',
+        '/home': 'home',
       }
+
+      const updateSelection = () => {
+        selected.value = routeToNavMap[route.path]
+      }
+
+      watch(() => route.path, updateSelection, { immediate: true })
 
       const handleLogout = () => {
         try {
@@ -65,9 +74,9 @@
 
       return {
         authStore,
-        navigateTo,
         selected,
         handleLogout,
+        capitalize,
       }
     },
   }
