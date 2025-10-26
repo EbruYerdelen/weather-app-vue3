@@ -6,7 +6,7 @@ A pretty and responsive weather forecast built with Vue 3, featuring dynamic the
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/weather-app-vue3.git
+   git clone https://github.com/EbruYerdelen/weather-app-vue3.git
    cd weather-app-vue3
    ```
 
