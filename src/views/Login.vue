@@ -4,13 +4,13 @@
       <v-col cols="12" sm="8">
         <v-card elevation="4" class="bg-pink-lighten-5">
           <v-card-title class="d-flex align-center justify-center pa-6">
-            <v-icon
-              :size="$vuetify.display.xs ? 'default' : $vuetify.display.sm ? 'large' : 'x-large'"
-              class="mr-4 text-pink-darken-1"
-            >
-              mdi-butterfly
-            </v-icon>
+            <v-avatar size="30">
+              <v-img src="/src/assets/images/butterfly_6639361.png" alt="weatherfly-logo" />
+            </v-avatar>
             <h2 class="text-pink-darken-1 text-h5 text-md-h4">Welcome To WeatherFly!</h2>
+            <v-avatar size="30">
+              <v-img src="/src/assets/images/butterfly_6639361.png" alt="weatherfly-logo" />
+            </v-avatar>
           </v-card-title>
 
           <v-form class="pa-8" @submit.prevent="handleLogin">
@@ -50,7 +50,7 @@
                 variant="tonal"
                 type="submit"
                 color="pink-darken-1"
-                prepend-icon="mdi-butterfly"
+                prepend-icon="mdi-login"
                 :loading="loading"
               >
                 Login

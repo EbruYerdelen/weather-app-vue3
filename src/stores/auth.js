@@ -29,6 +29,7 @@ export const useAuthStore = defineStore('auth', () => {
 
     localStorage.removeItem('isAuthenticated')
     localStorage.removeItem('user')
+    localStorage.removeItem('lastWeatherData')
   }
 
   return {
